@@ -17,9 +17,8 @@ def check(url):
     headers = {
         "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2227.0 Safari/537.36"
     }
-    proxies = {'http': 'http://127.0.0.1:8080', 'https': 'http://127.0.0.1:8080'}
     try:
-        response = requests.get(target, verify=False, headers=headers, timeout=15,proxies=proxies)
+        response = requests.get(target, verify=False, headers=headers, timeout=15)
         if response.status_code == 200 and 'database' in response.text and '1295' in response.text:
                 print(f"\033[31mDiscovered:{url}: tcsoftinterlib_updOpuserPw_SQLinject!\033[0m")
                 return True
