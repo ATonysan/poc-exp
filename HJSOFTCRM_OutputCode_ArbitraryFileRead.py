@@ -23,7 +23,7 @@ def check(url):
         if linux_response.status_code == 200 and 'root:' in linux_response.text and 'bin' in linux_response.text:
             print(f"\033[31mDiscovered:{url}: linux_HJSOFTCRM_OutputCode_ArbitraryFileRead!\033[0m")
             return True
-        if windows_response.status_code == 200 and 'fonts' in linux_response.text and 'extensions' in linux_response.text:
+        if windows_response.status_code == 200 and 'fonts' in windows_response.text and 'extensions' in windows_response.text:
             print(f"\033[31mDiscovered:{url}: windows_HJSOFTCRM_OutputCode_ArbitraryFileRead!\033[0m")
             return True
     except Exception as e:
