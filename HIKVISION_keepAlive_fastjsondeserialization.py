@@ -38,7 +38,7 @@ if __name__ == "__main__":
     url = args.url
     txt = args.txt
     if url:
-        run(url)
+        check(url)
     elif txt:
         urls = read_file(txt)
         for url in urls:
