@@ -31,7 +31,7 @@ def check(url):
                 print(f"\033[31mDiscovered:{url}: TelecommunicationsGateway_del_file_RCE!\033[0m")
                 return True
     except Exception as e:
-        print(e)
+        pass
 
 
 if __name__ == "__main__":
