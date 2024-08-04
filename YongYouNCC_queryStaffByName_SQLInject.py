@@ -22,7 +22,7 @@ def check(url):
     try:
         response = requests.get(target, verify=False, headers=headers, timeout=25)
         if response.status_code == 200 and 'message' in response.text and 'data' in response.text and 5 < response.elapsed.total_seconds() < 10:
-            print(f"\033[31mDiscovered:{url}: Panalog_sprog_upstatus_SQLInject!\033[0m")
+            print(f"\033[31mDiscovered:{url}: YongYouNCC_queryStaffByName_SQLInject!\033[0m")
             return True
     except Exception as e:
         pass
