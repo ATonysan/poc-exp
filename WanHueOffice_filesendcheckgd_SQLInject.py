@@ -23,7 +23,7 @@ def check(url):
         res = urllib.request.urlopen(response)
         status_code = res.getcode()
         content = res.read().decode()
-        if status_code == 200 and '正在归档中' in content and 'document' in content:
+        if status_code == 200 and '正在归档中' in content and 'document' in content and 5 < end_time-start_time < 10::
             print(f"\033[31mDiscovered:{url}: WanHueOffice_filesendcheckgd_SQLInject!\033[0m")
             return True
     except Exception as e:
